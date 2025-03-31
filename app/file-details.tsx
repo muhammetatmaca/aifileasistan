@@ -124,9 +124,7 @@ export default function FileDetailsScreen() {
           
           <View style={styles.metaItem}>
             <Calendar size={24} color={Colors.light.secondaryText} />
-            <Text style={styles.metaText}>
-              {formatDate(selectedFile.lastModified)}
-            </Text>
+            
           </View>
           
           {selectedFile.category && (

@@ -16,7 +16,8 @@ import FileItem from '@/components/FileItem';
 import CategoryCard from '@/components/CategoryCard';
 import EmptyState from '@/components/EmptyState';
 import { ArrowLeft } from 'lucide-react-native';
-
+import { Category } from '@/types/files';
+import { FileType } from '@/types/files';
 export default function CategoriesScreen() {
   const router = useRouter();
   const { 
@@ -30,14 +31,16 @@ export default function CategoriesScreen() {
   
   const filteredFiles = getFilesByCategory(selectedCategory);
   
-  const handleCategoryPress = (category) => {
-    setSelectedCategory(category.name);
+  const handleCategoryPress = (category: Category) => {
+    setSelectedCategory(category.id); // sadece id'yi gönder
+    router.push('/(tabs)/categories');
   };
   
-  const handleFilePress = (file) => {
-    router.push('/file-details');
-    useFileStore.getState().setSelectedFile(file);
-  };
+ 
+  
+
+
+  
   
   return (
     <View style={styles.container}>
@@ -92,26 +95,7 @@ export default function CategoriesScreen() {
             {selectedCategory === 'All' ? 'All Files' : selectedCategory}
           </Text>
           
-          {filteredFiles.length === 0 ? (
-            <EmptyState 
-              type="files" 
-              message={`No files in ${selectedCategory} category`} 
-            />
-          ) : (
-            <FlatList
-              data={filteredFiles}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <FileItem
-                  file={item}
-                  onPress={handleFilePress}
-                  onStarPress={() => toggleStarred(item.id)}
-                />
-              )}
-              contentContainerStyle={styles.filesList}
-              showsVerticalScrollIndicator={false}
-            />
-          )}
+          
         </View>
       </View>
     </View>

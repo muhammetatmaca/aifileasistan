@@ -94,9 +94,7 @@ export default function FilesScreen() {
         
         <JunkCleanerButton onPress={handleJunkCleanerPress} />
         
-        <CategoryGrid onCategoryPress={handleCategoryPress} />
         
-        <RecentFiles files={recentFiles} onFilePress={handleFilePress} />
       </ScrollView>
       
       <Modal
